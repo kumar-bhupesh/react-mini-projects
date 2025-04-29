@@ -1,11 +1,21 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./stopwatch.css";
 
 function Stopwatch() {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
 
+  useEffect(() => {
+    let intervalId;
+    if (isRunning) {
+      intervalId = setInterval(() => {
+        setTime((prevTime) => prevTime + 10);
+      }, 10);
+    }
+
+    return () => clearInterval(intervalId);
+  }, [isRunning]);
 
   return (
     <div className="stopwatch-container">
