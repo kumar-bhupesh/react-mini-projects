@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import "./stopwatch.css";
 
@@ -30,13 +29,26 @@ function Stopwatch() {
     return `${hours}:${minutes}:${seconds}.${milliseconds.slice(0, 2)}`;
   };
 
+  const toggleStopwatch = () => {
+    setIsRunning((prevIsRunning) => !prevIsRunning);
+  };
+
+  const resetStopwatch = () => {
+    setIsRunning(false);
+    setTime(0);
+  };
+
   return (
     <div className="stopwatch-container">
       <h1 className="stopwatch-title">Stopwatch</h1>
       <div className="stopwatch-time">{formatTime(time)}</div>
       <div className="stopwatch-controls">
-        <button className="start-stop-btn">{isRunning ? "Stop" : "Start"}</button>
-        <button className="reset-btn">Reset</button>
+        <button className="start-stop-btn" onClick={toggleStopwatch}>
+          {isRunning ? "Stop" : "Start"}
+        </button>
+        <button className="reset-btn" onClick={resetStopwatch}>
+          Reset
+        </button>
       </div>
     </div>
   );
