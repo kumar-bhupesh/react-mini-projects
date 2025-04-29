@@ -17,10 +17,23 @@ function Stopwatch() {
     return () => clearInterval(intervalId);
   }, [isRunning]);
 
+  const formatTime = (timeInMilliseconds) => {
+    const totalSeconds = Math.floor(timeInMilliseconds / 1000);
+    const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
+    const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(
+      2,
+      "0"
+    );
+    const seconds = String(totalSeconds % 60).padStart(2, "0");
+    const milliseconds = String(timeInMilliseconds % 1000).padStart(3, "0");
+
+    return `${hours}:${minutes}:${seconds}.${milliseconds.slice(0, 2)}`;
+  };
+
   return (
     <div className="stopwatch-container">
       <h1 className="stopwatch-title">Stopwatch</h1>
-      <div className="stopwatch-time">00:00:00.00</div>
+      <div className="stopwatch-time">{formatTime(time)}</div>
       <div className="stopwatch-controls">
         <button className="start-stop-btn">{isRunning ? "Stop" : "Start"}</button>
         <button className="reset-btn">Reset</button>
