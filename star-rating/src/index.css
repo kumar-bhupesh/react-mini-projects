@@ -1,0 +1,27 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #fff;
+}
+
+.App {
+  text-align: center;
+}
+
+.star-rating {
+  display: inline-block;
+  margin-top: 40px;
+} 
+
+.star {
+  font-size: 30px;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+  color: lightgray;
+  margin-right: 6px;
+}
+
+.star.filled {
+  color: gold;
+}
+
+
